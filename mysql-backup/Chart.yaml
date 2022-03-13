@@ -1,0 +1,21 @@
+apiVersion: v2
+annotations:
+  category: Database
+version: "0.1"
+appVersion: ""
+description: 数据库备份
+name: db-backup
+home: https://github.com/terryzwt/helm-charts
+dependencies:
+  - name: common
+    repository: https://charts.bitnami.com/bitnami
+    version: 1.x.x
+keywords:
+  - mysql
+maintainers:
+  - email: wentao.zhang@davyin.com
+    name: Davyin
+type: application
+sources:
+  - https://www.drupal.org
+  - https://www.davyin.com

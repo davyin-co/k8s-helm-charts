@@ -1,0 +1,30 @@
+# Default values for static-chart.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+image:
+  repository: docker.io/tiredofit/db-backup
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: "2.11.3"
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+db_backup:
+  crontab: "2 2 * * *"
+  local_destination: ""
+  keep_days: 7
+  debug_mode: "false"
+database:
+  type: "mysql"
+  host: ""
+  port: 3306
+  user: "root"
+  password: ""
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}

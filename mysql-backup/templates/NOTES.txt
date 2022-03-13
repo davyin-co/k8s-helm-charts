@@ -1,0 +1,6 @@
+1. Get the application URL by running these commands:
+数据库类型： {{ $.Values.database.type }}
+数据库： {{ $.Values.database.host }}
+备份计划： {{ $.Values.db_backup.crontab }}
+备份保留天数： {{ $.Values.db_backup.keep_days }}
+备份路径： {{ $.Values.db_backup.local_destination }}

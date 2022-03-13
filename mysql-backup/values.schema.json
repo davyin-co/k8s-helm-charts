@@ -1,0 +1,97 @@
+{
+    "$schema": "http://json-schema.org/schema#",
+    "type": "object",
+    "properties": {
+        "image": {
+            "type": "object",
+            "title": "镜像",
+            "form": true,
+            "properties": {
+                "repository": {
+                    "type": "string",
+                    "title": "镜像库地址",
+                    "form": true,
+                    "description": ""
+                },
+                "tag": {
+                    "type": "string",
+                    "title": "镜像标签",
+                    "form": true,
+                    "description": ""
+                }
+            }
+        },
+       "db_backup": {
+            "type": "object",
+            "title": "备份设置",
+            "form": true,
+            "properties": {
+                "crontab": {
+                    "type": "string",
+                    "title": "备份计划（crontab格式）",
+                    "form": true,
+                    "description": ""
+                },
+                "local_destination": {
+                    "type": "string",
+                    "title": "备份路径",
+                    "form": true,
+                    "description": ""
+                },
+                "keep_days": {
+                    "title": "日志保留天数",
+                    "type": "integer",
+                    "form": true,
+                    "description": "",
+                    "render": "slider",
+                    "sliderMin": 1,
+                    "sliderMax": 100,
+                    "sliderUnit": "天"
+                },
+                "debug_mode": {
+                    "type": "boolean",
+                    "title": "调试模式",
+                    "form": true,
+                    "description": "true|false"
+                }
+            }
+        },
+        "database": {
+            "type": "object",
+            "form": true,
+            "title": "数据库配置",
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "title": "数据库类型",
+                    "form": true,
+                    "description": ""
+                },
+                "host": {
+                    "type": "string",
+                    "title": "数据库地址",
+                    "form": true,
+                    "description": ""
+                },
+                "port": {
+                    "type": "integer",
+                    "title": "数据库端口",
+                    "form": true,
+                    "description": ""
+                },
+                "user": {
+                    "type": "string",
+                    "title": "数据库用户",
+                    "form": true,
+                    "description": ""
+                },
+                "password": {
+                    "type": "string",
+                    "title": "数据库密码",
+                    "form": true,
+                    "description": ""
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,38 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: {{ include "common.names.fullname" . }}
+spec:
+  concurrencyPolicy: Allow
+  failedJobsHistoryLimit: 10
+  jobTemplate:
+    spec:
+      backoffLimit: 10
+      template:
+        spec:
+          restartPolicy: OnFailure
+          containers:
+          - image: {{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}
+            imagePullPolicy: IfNotPresent
+            name: db-backup
+            command:
+              - /bin/bash
+              - /etc/services.available/10-db-backup/run
+              - NOW
+            envFrom:
+            - configMapRef:
+                name: {{ include "common.names.fullname" . }}
+            - secretRef:
+                name: {{ include "common.names.fullname" . }}
+            volumeMounts:
+              - mountPath: "/backup"
+                name: backup-destination
+          volumes:
+            - hostPath:
+                path: {{ .Values.db_backup.local_destination }}
+              name: backup-destination
+
+      ttlSecondsAfterFinished: 259200
+  schedule: {{ .Values.db_backup.crontab | quote }}
+  successfulJobsHistoryLimit: 3
+  suspend: false

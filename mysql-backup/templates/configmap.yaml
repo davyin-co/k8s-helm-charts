@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "common.names.fullname" . }}
+  labels: {{- include "common.labels.standard" . | nindent 4 }}
+     {{- if .Values.commonLabels }}
+     {{- include "common.tplvalues.render" ( dict "value" .Values.commonLabels "context" $ ) | nindent 4 }}
+     {{- end }}
+   {{- if .Values.commonAnnotations }}
+   annotations: {{- include "common.tplvalues.render" ( dict "value" .Values.commonAnnotations "context" $ ) | nindent 4 }}
+   {{- end }}
+data:
+  COMPRESSION: "GZ"
+  COMPRESSION_LEVEL: "6"
+  CONTAINER_ENABLE_MONITORING: "false"
+  DEBUG_MODE:  {{ $.Values.db_backup.debug_mode | quote }}
+  TIMEZONE: "Asia/Shanghai"
+  BACKUP_LOCATION: "FILESYSTEM"
+  DB_DUMP_TARGET: "/backup"
+  MD5: "false"
+  SPLIT_DB: "true"
+  DB_CLEANUP_TIME: {{ (mul $.Values.db_backup.keep_days 1440) | toString | quote }}

@@ -1,0 +1,155 @@
+{
+    "$schema": "http://json-schema.org/schema#",
+    "type": "object",
+    "properties": {
+        "image": {
+            "type": "object",
+            "title": "镜像",
+            "form": true,
+            "properties": {
+                "repository": {
+                    "type": "string",
+                    "title": "镜像库地址",
+                    "form": true,
+                    "description": ""
+                },
+                "tag": {
+                    "type": "string",
+                    "title": "镜像标签",
+                    "form": true,
+                    "description": ""
+                }
+            }
+        },
+        "replicaCount": {
+            "type": "integer",
+            "title": "副本数",
+            "form": true,
+            "description": "副本数,就是启动的容器的数量。"
+        },
+        "autoscaling": {
+            "type": "object",
+            "title": "自动伸缩配置",
+            "form": true,
+            "properties": {
+                "enabled": {
+                    "type": "boolean",
+                    "title": "是否启用自动伸缩",
+                    "form": true
+                },
+                "targetCPUUtilizationPercentage": {
+                    "type": "integer",
+                    "title": "触发条件",
+                    "form": true,
+                    "description": "CPU使用率",
+                    "hidden": {
+                        "value": false,
+                        "path": "autoscaling/enabled"
+                    }
+                },
+                "minReplicas": {
+                    "type": "integer",
+                    "title": "最小副本数",
+                    "form": true,
+                    "description": "最小副本数",
+                    "hidden": {
+                        "value": false,
+                        "path": "autoscaling/enabled"
+                    }
+                },
+                "maxReplicas": {
+                    "type": "integer",
+                    "title": "最大副本数",
+                    "form": true,
+                    "description": "最大副本数",
+                    "hidden": {
+                        "value": false,
+                        "path": "autoscaling/enabled"
+                    }
+                }
+            }
+        },
+
+        "ingress": {
+            "type": "object",
+            "title": "ingress配置",
+            "form": true,
+            "properties": {
+                "enabled": {
+                    "type": "boolean",
+                    "title": "启用",
+                    "form": true
+                },
+                "className": {
+                    "type": "string",
+                    "title": "ingress classname",
+                    "form": true,
+                    "description": "默认为nginx ingress",
+                    "hidden": {
+                        "value": false,
+                        "path": "ingress/enabled"
+                    }
+                },
+                "host": {
+                    "type": "string",
+                    "title": "域名",
+                    "form": true,
+                    "description": "多个域名用逗号(,)分割",
+                    "hidden": {
+                        "value": false,
+                        "path": "ingress/enabled"
+                    }
+                },
+                "tls": {
+                    "type": "array"
+                }
+            }
+        },
+        "ingress_subdir": {
+            "type": "object",
+            "title": "ingress 子路径配置",
+            "form": true,
+            "properties": {
+                "enabled": {
+                    "type": "boolean",
+                    "title": "启用",
+                    "form": true
+                },
+                "className": {
+                    "type": "string",
+                    "title": "ingress classname",
+                    "form": true,
+                    "description": "默认为nginx ingress",
+                    "hidden": {
+                        "value": false,
+                        "path": "ingress_subdir/enabled"
+                    }
+                },
+                "host": {
+                    "type": "string",
+                    "title": "域名",
+                    "form": true,
+                    "hidden": {
+                        "value": false,
+                        "path": "ingress_subdir/enabled"
+                    }
+                },
+                "path": {
+                    "type": "string",
+                    "title": "路径",
+                    "form": true,
+                    "hidden": {
+                        "value": false,
+                        "path": "ingress_subdir/enabled"
+                    }
+                }
+            }
+        },
+        "nodeSelector": {
+            "type": "object",
+            "title": "服务器选择",
+            "form": true,
+            "description": "example: hostname: k8s-node1"
+        }
+    }
+}

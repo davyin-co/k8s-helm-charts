@@ -1,0 +1,27 @@
+apiVersion: v2
+annotations:
+  category: CMS
+version: 0.2.2
+appVersion: "8.9+"
+dependencies:
+  - condition: mariadb.enabled
+    name: mariadb
+    repository: https://charts.bitnami.com/bitnami
+    version: 10.x.x
+  - name: common
+    repository: https://charts.bitnami.com/bitnami
+    version: 1.x.x
+description: Drupal网站部署
+name: drupal-chart
+home: https://www.github.com/davyin-co/dyniva
+keywords:
+  - drupal
+  - cms
+  - php
+maintainers:
+  - email: wentao.zhang@davyin.com
+    name: Davyin
+type: application
+sources:
+  - https://www.drupal.org
+  - https://www.davyin.com

@@ -1,0 +1,91 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "dyniva-chart.fullname" . }}
+  labels:
+    {{- include "dyniva-chart.labels" . | nindent 4 }}
+spec:
+  {{- if not .Values.autoscaling.enabled }}
+  replicas: {{ .Values.replicaCount }}
+  {{- end }}
+  selector:
+    matchLabels:
+      {{- include "dyniva-chart.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      {{- with .Values.podAnnotations }}
+      annotations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      labels:
+        {{- include "dyniva-chart.selectorLabels" . | nindent 8 }}
+    spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      serviceAccountName: {{ include "dyniva-chart.serviceAccountName" . }}
+      securityContext:
+        {{- toYaml .Values.podSecurityContext | nindent 8 }}
+      containers:
+        - name: {{ .Chart.Name }}
+          securityContext:
+            {{- toYaml .Values.securityContext | nindent 12 }}
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: 80
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /core/misc/drupal.js
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /core/misc/drupal.js
+              port: http
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+          volumeMounts:
+            - name: drupal-data
+              mountPath: {{ .Values.persistence.mountPath | quote }}
+          env:
+            - name: DRUPAL_SUBDIR
+              value: {{ include "drupal.subdir" . | quote }}
+            - name: DB_TYPE
+              value: {{ include "drupal.databaseType" . | quote }}
+            - name: DB_HOST
+              value: {{ include "drupal.databaseHost" . | quote }}
+            - name: DB_PORT
+              value: {{ include "drupal.databasePort" . | quote  }}
+            - name: DB_USERNAME
+              value: {{ include "drupal.databaseUser" . | quote }}
+            - name: DB_PASSWORD
+              value: {{ include "drupal.databasePassword" . | quote }}
+            - name: DB_NAME
+              value: {{ include "drupal.databaseName" . | quote }}
+            - name: SITE_ENVIRONMENT
+              value: {{ include "drupal.env" . | quote }}
+            - name: HASH_SALT
+              value: {{ include "drupal.hashsalt" . | quote }}
+            - name: MAX_FILE_UPLOAD_SIZE
+              value: {{ include "drupal.uploadSize" .| quote }}
+            - name: HTTP_HEADER_X_CONTENT_SECURITY_POLICY
+              value: "default-src 'self' data: 'unsafe-inline' 'unsafe-eval' *.google.com *.baidu.com unpkg.com *.gstatic.com *.googleapis.com;"
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+      volumes:
+        - name: drupal-data
+          persistentVolumeClaim:
+            claimName: {{ .Values.persistence.existingClaim | default (printf "%s-drupal" ( include "dyniva-chart.fullname" . )) }}
