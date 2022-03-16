@@ -60,16 +60,6 @@ Create the name of the service account to use
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}
 {{- end }}
-{{/*
-Return the drupalHashsalt
-*/}}
-{{- define "drupal.hashsalt" -}}
-{{- if .Values.podEnv.drupalHashsalt }}
-    {{- printf "%s" (.Values.podEnv.drupalHashsalt ) -}}
-{{- else -}}
-    {{- printf "change-me-to-random-string" -}}
-{{- end -}}
-{{- end -}}
 
 {{/*
 Return the site environment

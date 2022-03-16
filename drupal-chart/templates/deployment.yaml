@@ -62,17 +62,23 @@ spec:
             - name: DB_USERNAME
               value: {{ include "drupal.databaseUser" . | quote }}
             - name: DB_PASSWORD
-              value: {{ include "drupal.databasePassword" . | quote }}
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "common.names.fullname" . }}
+                  key: DRUPAL_DB_PASS
             - name: DB_NAME
               value: {{ include "drupal.databaseName" . | quote }}
             - name: SITE_ENVIRONMENT
               value: {{ include "drupal.env" . | quote }}
             - name: HASH_SALT
-              value: {{ include "drupal.hashsalt" . | quote }}
+              valueFrom:
+                secretKeyRef:
+                  name: {{ include "common.names.fullname" . }}
+                  key: DRUPAL_HASH_SALT
             - name: MAX_FILE_UPLOAD_SIZE
               value: {{ include "drupal.uploadSize" .| quote }}
             - name: HTTP_HEADER_X_CONTENT_SECURITY_POLICY
-              value: "default-src 'self' data: 'unsafe-inline' 'unsafe-eval' *.google.com *.baidu.com unpkg.com *.gstatic.com *.googleapis.com;"
+              value: "default-src 'self' data: 'unsafe-inline' 'unsafe-eval' *.google.com *.baidu.com unpkg.com *.gstatic.com *.googleapis.com piwik.sysu.edu.cn;"
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

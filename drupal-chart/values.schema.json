@@ -32,12 +32,6 @@
             "form": true,
             "title": "Drupal 配置",
             "properties": {
-                "drupalHashSalt": {
-                    "type": "string",
-                    "title": "Drupal hashsalt",
-                    "form": true,
-                    "description": "Drupal hashsalt"
-                },
                 "drupalUploadSize": {
                     "type": "string",
                     "title": "文件上传大小",
