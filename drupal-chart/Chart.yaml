@@ -9,7 +9,7 @@ dependencies:
     version: 1.x.x
 description: Drupal网站部署
 name: drupal-chart
-home: https://www.github.com/davyin-co/dyniva
+home: https://github.com/davyin-co/k8s-helm-charts/drupal-chart
 keywords:
   - drupal
   - cms

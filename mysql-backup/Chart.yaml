@@ -5,7 +5,7 @@ version: "0.1"
 appVersion: ""
 description: 数据库备份
 name: db-backup
-home: https://github.com/terryzwt/helm-charts
+home: https://github.com/davyin-co/k8s-helm-charts/mysql-backup
 dependencies:
   - name: common
     repository: https://charts.bitnami.com/bitnami

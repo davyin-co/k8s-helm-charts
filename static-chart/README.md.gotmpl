@@ -1,0 +1,21 @@
+{{ template "chart.header" . }}
+{{ template "chart.deprecationWarning" . }}
+
+{{ template "chart.badgesSection" . }}
+
+部署纯HTML的静态网站，镜像制作方式参考Dockerfile
+```
+FROM davyinsa/nginx
+COPY . /usr/share/nginx/html
+
+```
+
+{{ template "chart.homepageLine" . }}
+
+{{ template "chart.maintainersSection" . }}
+
+{{ template "chart.sourcesSection" . }}
+
+{{ template "chart.requirementsSection" . }}
+
+{{ template "chart.valuesSection" . }}
