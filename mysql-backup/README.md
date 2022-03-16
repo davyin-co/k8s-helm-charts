@@ -3,16 +3,6 @@
 ![Version: 0.1](https://img.shields.io/badge/Version-0.1-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square)
 
 数据库备份，基于[tiredofit/db-backup](https://hub.docker.com/r/tiredofit/db-backup)镜像。
-```
-FROM sparkpos/docker-nginx-php:7.4-alpine
-ENV DRUPAL_WEB_ROOT docroot
-ADD . /var/www/html
-RUN mkdir docroot/sites/default/files -p && \
-    chmod -R 777 docroot/sites/default/files && \
-    cd /var/www/html && \
-    composer drupal:scaffold -q
-VOLUME /var/www/html/docroot/sites/default/files
-```
 
 **Homepage:** <https://github.com/davyin-co/k8s-helm-charts/mysql-backup>
 

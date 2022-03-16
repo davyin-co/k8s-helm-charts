@@ -4,16 +4,7 @@
 {{ template "chart.badgesSection" . }}
 
 数据库备份，基于[tiredofit/db-backup](https://hub.docker.com/r/tiredofit/db-backup)镜像。
-```
-FROM sparkpos/docker-nginx-php:7.4-alpine
-ENV DRUPAL_WEB_ROOT docroot
-ADD . /var/www/html
-RUN mkdir docroot/sites/default/files -p && \
-    chmod -R 777 docroot/sites/default/files && \
-    cd /var/www/html && \
-    composer drupal:scaffold -q
-VOLUME /var/www/html/docroot/sites/default/files
-```
+
 
 {{ template "chart.homepageLine" . }}
 
