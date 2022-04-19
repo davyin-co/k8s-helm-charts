@@ -65,10 +65,10 @@ Create the name of the service account to use
 if image force update
 */}}
 {{- define "image.pull_policy" -}}
-{{- if .Values.image.pullPolicy }}
-    {{- printf "%s" "IfNotPresent" -}}
+{{- if .Values.image.forceUpdate }}
+    {{- printf "%s" "Always" -}}
 {{- else -}}
-    {{- printf "Always" -}}
+    {{- printf "IfNotPresent" -}}
 {{- end -}}
 {{- end -}}
 

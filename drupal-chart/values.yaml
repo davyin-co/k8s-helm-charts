@@ -4,6 +4,7 @@
 
 image:
   repository: 10.16.1.81:30885/sysu/sysu-dist
+  forceUpdate: false
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: "v1.5"

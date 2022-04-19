@@ -19,7 +19,7 @@
                     "form": true,
                     "description": ""
                 },
-                "pullPolicy": {
+                "forceUpdate": {
                     "type": "boolean",
                     "title": "强制更新",
                     "form": true,
