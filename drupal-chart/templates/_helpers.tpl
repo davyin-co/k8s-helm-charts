@@ -62,6 +62,17 @@ Create the name of the service account to use
 {{- end }}
 
 {{/*
+if image force update
+*/}}
+{{- define "image.pull_policy" -}}
+{{- if .Values.image.pullPolicy }}
+    {{- printf "%s" "IfNotPresent" -}}
+{{- else -}}
+    {{- printf "Always" -}}
+{{- end -}}
+{{- end -}}
+
+{{/*
 Return the site environment
 */}}
 {{- define "drupal.env" -}}
