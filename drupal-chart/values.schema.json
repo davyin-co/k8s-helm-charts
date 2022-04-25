@@ -231,6 +231,7 @@
                     "type": "string",
                     "title": "域名",
                     "form": true,
+                    "description": "多个域名用逗号(,)分割",
                     "hidden": {
                         "value": false,
                         "path": "ingress_subdir/enabled"

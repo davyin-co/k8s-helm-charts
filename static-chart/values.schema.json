@@ -18,6 +18,12 @@
                     "title": "镜像标签",
                     "form": true,
                     "description": ""
+                },
+                "forceUpdate": {
+                    "type": "boolean",
+                    "title": "强制更新",
+                    "form": true,
+                    "description": ""
                 }
             }
         },

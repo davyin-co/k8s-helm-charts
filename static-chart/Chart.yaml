@@ -1,7 +1,7 @@
 apiVersion: v2
 annotations:
   category: CMS
-version: "1.6"
+version: "1.7"
 appVersion: ""
 description: 静态网站部署
 name: static-chart

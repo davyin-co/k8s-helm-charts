@@ -62,6 +62,17 @@ Create the name of the service account to use
 {{- end }}
 
 {{/*
+if image force update
+*/}}
+{{- define "image.pull_policy" -}}
+{{- if .Values.image.forceUpdate }}
+    {{- printf "%s" "Always" -}}
+{{- else -}}
+    {{- printf "IfNotPresent" -}}
+{{- end -}}
+{{- end -}}
+
+{{/*
 Create the name of the service account to use
 */}}
 {{- define "static-chart.ingress_path" -}}

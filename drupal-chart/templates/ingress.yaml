@@ -38,6 +38,7 @@ spec:
     {{- end }}
   {{- end }}
   rules:
+    {{- if and $.Values.ingress.enabled $.Values.ingress.host }}
     {{- $hosts := splitList "," $.Values.ingress.host -}}
     {{- range $hosts }}
     - host: {{ . | quote }}
@@ -57,8 +58,13 @@ spec:
               serviceName: {{ $fullName }}
               servicePort: {{ $svcPort }}
               {{- end }}
-    {{- end}}
-    - host: {{ $.Values.ingress_subdir.host | quote }}
+    {{- end }}
+    {{- end }}
+
+    {{- if and $.Values.ingress_subdir.enabled $.Values.ingress_subdir.host }}
+    {{- $hosts := splitList "," $.Values.ingress_subdir.host -}}
+    {{- range $hosts }}
+    - host: {{ . | quote }}
       http:
         paths:
           - path: {{ $.Values.ingress_subdir.path | quote }}
@@ -75,4 +81,6 @@ spec:
               serviceName: {{ $fullName }}
               servicePort: {{ $svcPort }}
               {{- end }}
+    {{- end }}
+    {{- end }}
 {{- end }}
