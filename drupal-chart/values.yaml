@@ -52,6 +52,8 @@ securityContext: {}
   # runAsUser: 1000
 
 service:
+  nodePortEnabled: false
+  nodePort: 30999
   type: ClusterIP
   port: 80
 

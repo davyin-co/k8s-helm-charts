@@ -27,11 +27,103 @@
                 }
             }
         },
-        "replicaCount": {
-            "type": "integer",
-            "title": "副本数",
+        "ingress": {
+            "type": "object",
+            "title": "ingress配置",
             "form": true,
-            "description": "副本数,就是启动的容器的数量。"
+            "properties": {
+                "enabled": {
+                    "type": "boolean",
+                    "title": "启用",
+                    "form": true
+                },
+                "className": {
+                    "type": "string",
+                    "title": "ingress classname",
+                    "form": true,
+                    "description": "默认为nginx ingress",
+                    "hidden": {
+                        "value": false,
+                        "path": "ingress/enabled"
+                    }
+                },
+                "host": {
+                    "type": "string",
+                    "title": "域名",
+                    "form": true,
+                    "description": "多个域名用逗号(,)分割",
+                    "hidden": {
+                        "value": false,
+                        "path": "ingress/enabled"
+                    }
+                },
+                "tls": {
+                    "type": "array"
+                }
+            }
+        },
+        "ingress_subdir": {
+            "type": "object",
+            "title": "ingress 子路径配置",
+            "form": true,
+            "properties": {
+                "enabled": {
+                    "type": "boolean",
+                    "title": "启用",
+                    "form": true
+                },
+                "className": {
+                    "type": "string",
+                    "title": "ingress classname",
+                    "form": true,
+                    "description": "默认为nginx ingress",
+                    "hidden": {
+                        "value": false,
+                        "path": "ingress_subdir/enabled"
+                    }
+                },
+                "host": {
+                    "type": "string",
+                    "title": "域名",
+                    "form": true,
+                    "description": "多个域名用逗号(,)分割",
+                    "hidden": {
+                        "value": false,
+                        "path": "ingress_subdir/enabled"
+                    }
+                },
+                "path": {
+                    "type": "string",
+                    "title": "路径",
+                    "form": true,
+                    "hidden": {
+                        "value": false,
+                        "path": "ingress_subdir/enabled"
+                    }
+                }
+            }
+        },
+        "service": {
+            "type": "object",
+            "title": "端口访问",
+            "form": true,
+            "properties": {
+                "nodePortEnabled": {
+                    "type": "boolean",
+                    "title": "启用",
+                    "form": true
+                },
+                "nodePort": {
+                    "type": "integer",
+                    "title": "端口",
+                    "form": true,
+                    "description": "端口号必须大于30000,并且不与已有端口重复已避免冲突",
+                    "hidden": {
+                        "value": false,
+                        "path": "service/nodePortEnabled"
+                    }
+                }
+            }
         },
         "podEnv": {
             "type": "object",
@@ -129,6 +221,12 @@
                 }
             }
         },
+        "replicaCount": {
+            "type": "integer",
+            "title": "副本数",
+            "form": true,
+            "description": "副本数,就是启动的容器的数量。"
+        },
         "autoscaling": {
             "type": "object",
             "title": "自动伸缩配置",
@@ -167,83 +265,6 @@
                     "hidden": {
                         "value": false,
                         "path": "autoscaling/enabled"
-                    }
-                }
-            }
-        },
-
-        "ingress": {
-            "type": "object",
-            "title": "ingress配置",
-            "form": true,
-            "properties": {
-                "enabled": {
-                    "type": "boolean",
-                    "title": "启用",
-                    "form": true
-                },
-                "className": {
-                    "type": "string",
-                    "title": "ingress classname",
-                    "form": true,
-                    "description": "默认为nginx ingress",
-                    "hidden": {
-                        "value": false,
-                        "path": "ingress/enabled"
-                    }
-                },
-                "host": {
-                    "type": "string",
-                    "title": "域名",
-                    "form": true,
-                    "description": "多个域名用逗号(,)分割",
-                    "hidden": {
-                        "value": false,
-                        "path": "ingress/enabled"
-                    }
-                },
-                "tls": {
-                    "type": "array"
-                }
-            }
-        },
-        "ingress_subdir": {
-            "type": "object",
-            "title": "ingress 子路径配置",
-            "form": true,
-            "properties": {
-                "enabled": {
-                    "type": "boolean",
-                    "title": "启用",
-                    "form": true
-                },
-                "className": {
-                    "type": "string",
-                    "title": "ingress classname",
-                    "form": true,
-                    "description": "默认为nginx ingress",
-                    "hidden": {
-                        "value": false,
-                        "path": "ingress_subdir/enabled"
-                    }
-                },
-                "host": {
-                    "type": "string",
-                    "title": "域名",
-                    "form": true,
-                    "description": "多个域名用逗号(,)分割",
-                    "hidden": {
-                        "value": false,
-                        "path": "ingress_subdir/enabled"
-                    }
-                },
-                "path": {
-                    "type": "string",
-                    "title": "路径",
-                    "form": true,
-                    "hidden": {
-                        "value": false,
-                        "path": "ingress_subdir/enabled"
                     }
                 }
             }

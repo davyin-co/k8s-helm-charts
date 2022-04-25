@@ -73,6 +73,17 @@ if image force update
 {{- end -}}
 
 {{/*
+service type
+*/}}
+{{- define "service.type" -}}
+{{- if .Values.service.nodePortEnabled }}
+    {{- printf "%s" "NodePort" -}}
+{{- else -}}
+    {{- printf "ClusterIP" -}}
+{{- end -}}
+{{- end -}}
+
+{{/*
 Return the site environment
 */}}
 {{- define "drupal.env" -}}
