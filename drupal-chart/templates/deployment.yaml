@@ -38,13 +38,19 @@ spec:
               containerPort: 80
               protocol: TCP
           livenessProbe:
-            httpGet:
-              path: /
-              port: http
+            exec:
+              command: 
+              - /bin/sh
+              - -c
+              - "cat /var/www/html/${DRUPAL_WEB_ROOT}/index.php"
+            initialDelaySeconds: 5
+            periodSeconds: 10
           readinessProbe:
             httpGet:
               path: /
               port: http
+            timeoutSeconds: 5
+
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           volumeMounts:
