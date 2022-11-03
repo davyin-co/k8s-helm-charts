@@ -24,6 +24,12 @@
                     "title": "强制更新",
                     "form": true,
                     "description": ""
+                },
+                "static_path": {
+                    "type": "string",
+                    "title": "站点路径",
+                    "form": true,
+                    "description": ""
                 }
             }
         },

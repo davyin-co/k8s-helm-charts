@@ -8,6 +8,7 @@ image:
   # Overrides the image tag whose default is the chart appVersion.
   forceUpdate: false
   tag: "latest"
+  static_path: "/drupal_data/static_sites/"
 
 imagePullSecrets: []
 nameOverride: ""
