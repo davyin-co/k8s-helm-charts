@@ -3,7 +3,7 @@
 # Declare variables to be passed into your templates.
 
 image:
-  repository: 10.16.1.81:30885/sysu/static_project
+  repository: davyinsa/nginx
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   forceUpdate: false

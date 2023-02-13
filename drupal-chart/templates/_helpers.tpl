@@ -180,3 +180,13 @@ Return drupal subdir
     {{- printf "" -}}
 {{- end -}}
 {{- end -}}
+
+Return settings.loca.php string
+*/}}
+{{- define "drupal.drupalSettingsLocalString" -}}
+{{- if .Values.podEnv.drupalSettingsLocalString }}
+    {{- printf "%s" (.Values.podEnv.drupalSettingsLocalString ) -}}
+{{- else -}}
+    {{- printf "<?php" -}}
+{{- end -}}
+{{- end -}}

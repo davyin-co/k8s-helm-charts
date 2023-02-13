@@ -177,6 +177,13 @@
                     "title": "数据库名",
                     "form": true,
                     "description": ""
+                },
+                "drupalSettingsLocalString": {
+                    "type": "string",
+                    "title": "settings.local.php",
+                    "form": true,
+                    "render": "textArea",
+                    "description": ""
                 }
             }
         },

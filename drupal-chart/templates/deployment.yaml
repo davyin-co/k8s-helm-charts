@@ -56,6 +56,8 @@ spec:
           volumeMounts:
             - name: drupal-data
               mountPath: {{ .Values.persistence.mountPath | quote }}
+            - name: drupal-settings-local
+              mountPath: /var/config/drupal
           env:
             - name: DRUPAL_SUBDIR
               value: {{ include "drupal.subdir" . | quote }}
@@ -101,3 +103,9 @@ spec:
         - name: drupal-data
           persistentVolumeClaim:
             claimName: {{ .Values.persistence.existingClaim | default (printf "%s-drupal" ( include "dyniva-chart.fullname" . )) }}
+        - name: drupal-settings-local
+          configMap:
+            name: {{ include "common.names.fullname" . }}
+            items:
+            - key: drupal-configs-local
+              path: settings.local.php
