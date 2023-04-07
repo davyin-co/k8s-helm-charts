@@ -3,11 +3,10 @@
 # Declare variables to be passed into your templates.
 
 image:
-  repository: 10.16.1.81:30885/sysu/sysu-dist
+  repository: 10.16.1.84:443/drupal/sysu-dist
   forceUpdate: false
   pullPolicy: IfNotPresent
-  # Overrides the image tag whose default is the chart appVersion.
-  tag: "v1.5"
+  tag: "8.7.x"
 
 imagePullSecrets: []
 nameOverride: ""
@@ -84,17 +83,17 @@ ingress_subdir:
   #  - secretName: chart-example-tls
   #    hosts:
   #      - chart-example.local
-resources: {}
+resources: 
   # We usually recommend not to specify default resources and to leave this as a conscious
   # choice for the user. This also increases chances charts run on environments with little
   # resources, such as Minikube. If you do want to specify resources, uncomment the following
   # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-  # limits:
-  #   cpu: 100m
-  #   memory: 128Mi
-  # requests:
-  #   cpu: 100m
-  #   memory: 128Mi
+  requests:
+    memory: "200Mi"
+    cpu: "15m"
+  limits:
+    memory: "1500Mi"
+    cpu: "2000m"
 replicaCount: 1
 autoscaling:
   enabled: false

@@ -33,6 +33,13 @@ spec:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ include "image.pull_policy" . | quote }}
+          resources:
+            requests:
+              memory: "200Mi"
+              cpu: "15m"
+            limits:
+              memory: "1500Mi"
+              cpu: "2000m"
           ports:
             - name: http
               containerPort: 80
@@ -59,6 +66,16 @@ spec:
             - name: drupal-settings-local
               mountPath: /var/config/drupal
           env:
+            - name: NGINX_WORKER_PROCESSES
+              value: "2"
+            - name: PHP_FPM_PM
+              value: "dynamic"
+            - name: PHP_FPM_PM_START_SERVERS
+              value: "5"
+            - name: PHP_FPM_PM_MIN_SPARE_SERVERS
+              value: "5"
+            - name: PHP_FPM_PM_MAX_SPARE_SERVERS
+              value: "5"
             - name: DRUPAL_SUBDIR
               value: {{ include "drupal.subdir" . | quote }}
             - name: DB_TYPE

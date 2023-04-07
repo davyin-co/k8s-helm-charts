@@ -1,7 +1,7 @@
 apiVersion: v2
 annotations:
   category: CMS
-version: "1.13"
+version: "1.14"
 appVersion: "1.0"
 dependencies:
   - name: common
