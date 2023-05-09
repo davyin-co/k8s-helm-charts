@@ -76,6 +76,8 @@ spec:
               value: "5"
             - name: PHP_FPM_PM_MAX_SPARE_SERVERS
               value: "5"
+            - name: SUBDIR_HOST
+              value: {{ include "ingress_subdir.host" . | quote }}
             - name: DRUPAL_SUBDIR
               value: {{ include "drupal.subdir" . | quote }}
             - name: DB_TYPE
