@@ -170,7 +170,17 @@ Return the databaseName
     {{- printf "dyniva_cms" -}}
 {{- end -}}
 {{- end -}}
-
+{{/*
+Return drupal subdir hostname
+*/}}
+{{- define "ingress_subdir.host" -}}
+{{- if .Values.ingress_subdir.path }}
+    {{- printf "%s" (.Values.ingress_subdir.host) -}}
+{{- else -}}
+    {{- printf "" -}}
+{{- end -}}
+{{- end -}}
+{{/*
 Return drupal subdir
 */}}
 {{- define "drupal.subdir" -}}
@@ -180,8 +190,8 @@ Return drupal subdir
     {{- printf "" -}}
 {{- end -}}
 {{- end -}}
-
-Return settings.loca.php string
+{{/*
+Return settings.local.php string
 */}}
 {{- define "drupal.drupalSettingsLocalString" -}}
 {{- if .Values.podEnv.drupalSettingsLocalString }}

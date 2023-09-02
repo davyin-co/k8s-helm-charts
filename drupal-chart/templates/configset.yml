@@ -10,5 +10,4 @@ metadata:
    annotations: {{- include "common.tplvalues.render" ( dict "value" .Values.commonAnnotations "context" $ ) | nindent 4 }}
    {{- end }}
 data:
-  drupal-configs-local: | 
-    {{ include "drupal.drupalSettingsLocalString" . | nindent 4 }}
+  drupal-configs-local: {{- include "drupal.drupalSettingsLocalString" . }}
