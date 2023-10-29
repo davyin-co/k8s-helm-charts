@@ -71,11 +71,21 @@ spec:
             - name: PHP_FPM_PM
               value: "dynamic"
             - name: PHP_FPM_PM_START_SERVERS
-              value: "5"
+              value: "2"
             - name: PHP_FPM_PM_MIN_SPARE_SERVERS
-              value: "5"
+              value: "2"
             - name: PHP_FPM_PM_MAX_SPARE_SERVERS
               value: "5"
+            - name: PHP_FPM_START_SERVERS
+              value: "2"
+            - name: PHP_FPM_MIN_SPARE_SERVERS
+              value: "2"
+            - name: PHP_FPM_MAX_SPARE_SERVERS
+              value: "5"
+            - name: PHP_FPM_MAX_CHILDREN
+              value: "20"
+            - name: PHP_FPM_MAX_REQUESTS
+              value: "2000"
             - name: SUBDIR_HOST
               value: {{ include "ingress_subdir.host" . | quote }}
             - name: DRUPAL_SUBDIR
