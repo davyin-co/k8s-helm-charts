@@ -3,8 +3,6 @@ kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
   name: {{ include "dyniva-chart.fullname" . }}-drupal
-  annotations:
-    nfs.io/storage-path: {{ include "dyniva-chart.fullname" . }}
   labels:
     {{- include "dyniva-chart.labels" . | nindent 4 }}
 spec:
