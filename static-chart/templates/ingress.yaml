@@ -70,6 +70,8 @@ metadata:
   labels:
     {{- include "static-chart.labels" . | nindent 4 }}
   annotations:
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      rewrite ^([^.]*[^/])$ http://{{ $.Values.ingress_subdir.host }}{{ $.Values.ingress_subdir.path }}/ permanent;
     nginx.ingress.kubernetes.io/proxy-body-size:  32M
     nginx.ingress.kubernetes.io/rewrite-target: /$2
     {{- with .Values.ingress.annotations }}

@@ -65,6 +65,11 @@ spec:
               mountPath: {{ .Values.persistence.mountPath | quote }}
             - name: drupal-settings-local
               mountPath: /var/config/drupal
+          envFrom:
+          - configMapRef:
+              name: dsf-env-configmap
+          - secretRef:
+              name: dsf-env-secrets
           env:
             - name: NGINX_WORKER_PROCESSES
               value: "2"
