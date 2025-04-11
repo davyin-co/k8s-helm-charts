@@ -27,7 +27,6 @@ jobs:
           git config user.name "GitHub Actions"
           git config user.email "actions@github.com"
           git checkout gh-pages
-          cp -f *.tgz index.html .
           git add .
           git commit -m "Update charts"
           git push origin gh-pages
