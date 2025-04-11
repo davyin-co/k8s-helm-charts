@@ -33,13 +33,6 @@ spec:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ include "image.pull_policy" . | quote }}
-          resources:
-            requests:
-              memory: "200Mi"
-              cpu: "15m"
-            limits:
-              memory: "1500Mi"
-              cpu: "2000m"
           ports:
             - name: http
               containerPort: 80
@@ -52,12 +45,6 @@ spec:
               - "cat /var/www/html/${DRUPAL_WEB_ROOT}/index.php"
             initialDelaySeconds: 5
             periodSeconds: 10
-          readinessProbe:
-            httpGet:
-              path: /user/login
-              port: http
-            timeoutSeconds: 10
-
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           volumeMounts:
@@ -103,6 +90,8 @@ spec:
               value: {{ include "drupal.databasePort" . | quote  }}
             - name: DB_USERNAME
               value: {{ include "drupal.databaseUser" . | quote }}
+            - name: DRUPAL_FILES_PERM_FIXED
+              value: "false"
             - name: DB_PASSWORD
               valueFrom:
                 secretKeyRef:
