@@ -1,0 +1,84 @@
+apiVersion: v1
+entries:
+  db-backup:
+  - annotations:
+      category: Database
+    apiVersion: v2
+    created: "2025-04-11T17:55:50.95880044Z"
+    dependencies:
+    - name: common
+      repository: https://charts.bitnami.com/bitnami
+      version: 1.x.x
+    description: 数据库备份
+    digest: 7419273d1ad0985a7527bc096433419ee52cc0edf127d026d603e387edaf6661
+    home: https://github.com/davyin-co/k8s-helm-charts/mysql-backup
+    keywords:
+    - mysql
+    maintainers:
+    - email: wentao.zhang@davyin.com
+      name: Davyin
+    name: db-backup
+    sources:
+    - https://www.drupal.org
+    - https://www.davyin.com
+    type: application
+    urls:
+    - https://davyin-co.github.io/k8s-helm-charts/db-backup-1.6.tgz
+    version: "1.6"
+  drupal-chart:
+  - annotations:
+      category: CMS
+    apiVersion: v2
+    appVersion: "1.0"
+    created: "2025-04-11T17:55:50.959994906Z"
+    dependencies:
+    - name: common
+      repository: https://charts.bitnami.com/bitnami
+      version: 1.x.x
+    description: Drupal网站部署
+    digest: 5c8a3fe49ebb592cf3f31a0d509498718cb960f6c0b511528ebe579ecc2fe6b2
+    home: https://github.com/davyin-co/k8s-helm-charts/drupal-chart
+    keywords:
+    - drupal
+    - cms
+    - php
+    maintainers:
+    - email: wentao.zhang@davyin.com
+      name: Davyin
+    name: drupal-chart
+    sources:
+    - https://www.drupal.org
+    - https://www.davyin.com
+    type: application
+    urls:
+    - https://davyin-co.github.io/k8s-helm-charts/drupal-chart-1.18.tgz
+    version: "1.18"
+  static-chart:
+  - annotations:
+      category: CMS
+    apiVersion: v2
+    created: "2025-04-11T17:55:50.961084926Z"
+    dependencies:
+    - name: common
+      repository: https://charts.bitnami.com/bitnami
+      version: 1.x.x
+    description: 静态网站部署
+    digest: cf29e96830114e106abcbf00bba3f11cb1acfd80b6cd910f6c228dea07b8125e
+    home: https://github.com/davyin-co/k8s-helm-charts/static-chart
+    keywords:
+    - nginx
+    - drupal
+    - cms
+    - php
+    maintainers:
+    - email: wentao.zhang@davyin.com
+      name: Davyin
+    name: static-chart
+    sources:
+    - https://www.drupal.org
+    - https://www.davyin.com
+    type: application
+    urls:
+    - https://davyin-co.github.io/k8s-helm-charts/static-chart-1.10.tgz
+    version: "1.10"
+generated: "2025-04-11T17:55:50.956858279Z"
